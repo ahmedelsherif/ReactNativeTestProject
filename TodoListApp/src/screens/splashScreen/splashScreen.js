@@ -8,7 +8,7 @@ import Reactotron from 'reactotron-react-native'
 
 
 type Props = {};
-export default class App extends Component<Props> {
+export default class splashScreen extends Component<Props> {
 
     componentDidMount() {
         Reactotron.log('splash screen did mount');
