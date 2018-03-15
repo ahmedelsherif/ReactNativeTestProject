@@ -11,6 +11,7 @@ export default class loginScreen extends Component<Props> {
         super(props);
         this.state = { email: '', password: '' };
         this.loginButtonTouched = this.loginButtonTouched.bind(this);
+        this.createNewAccountButtonTouched = this.createNewAccountButtonTouched.bind(this);
     }
 
     render() {
@@ -50,12 +51,23 @@ export default class loginScreen extends Component<Props> {
                         onPress={this.loginButtonTouched}
                     />
                 </View>
+                <View style={styles.login}>
+                    <Button
+                        title="Create New Account"
+                        onPress={this.createNewAccountButtonTouched}
+                    />
+                </View>
             </KeyboardAvoidingView>
         );
     }
 
     loginButtonTouched(){
         Reactotron.log('login button touched, email: '+this.state.email+'  password: '+this.state.password);
+    }
+
+    createNewAccountButtonTouched(){
+        Reactotron.log('create account button touched, email: ');
+        this.props.navigation.navigate( 'signupScreen' );
     }
 }
 
