@@ -8,4 +8,6 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 8 , message: "#{PASSWORD_LESS_THAN_MINIMUM_LENGTH_ID}"}, :if => '!password.nil?'
   validates :email, length: { maximum: 500 , message: "#{EMAIL_LENGTH_EXCEEDED_MAX_ID}"}
   validates :name, length: { in: 3..20, :message => "#{NAME_LENGTH_NOT_WITHIN_LIMITS_ID}" }
+
+  has_many :to_do_lists
 end
