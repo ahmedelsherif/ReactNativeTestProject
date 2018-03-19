@@ -4,6 +4,7 @@ import { StackNavigator, SwitchNavigator } from 'react-navigation';
 import splashScreen from "./screens/splashScreen/splashScreen"
 import loginScreen from "./screens/loginScreen/loginScreen"
 import signupScreen from "./screens/signupScreen/signupScreen"
+import homeScreen from "./screens/homeScreen/homeScreen"
 
 
 const AuthStack = StackNavigator(
@@ -24,7 +25,7 @@ const AuthStack = StackNavigator(
 const AppStack = StackNavigator(
     {
         homeScreen: {
-            screen: splashScreen,
+            screen: homeScreen,
         },
     },
     {

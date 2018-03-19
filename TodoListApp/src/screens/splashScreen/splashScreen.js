@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import styles from "./splashStyle"
+import {checkUserSession} from './splashManager'
 import {
     Text,
     View,
-    AsyncStorage
 } from 'react-native';
 import Reactotron from 'reactotron-react-native'
 
@@ -14,7 +14,7 @@ export default class splashScreen extends Component<Props> {
         Reactotron.log('splash screen did mount');
         setTimeout(() => {
             Reactotron.log('splash screen timer finished');
-            this.checkUserSession();
+            this.checkSession();
         }, 3000);
     }
 
@@ -23,7 +23,7 @@ export default class splashScreen extends Component<Props> {
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>
-                   To Do Lists
+                    To Do Lists
                 </Text>
                 <Text style={styles.description}>
                     React Native Academy
@@ -32,12 +32,16 @@ export default class splashScreen extends Component<Props> {
         );
     }
 
-    // Check user session in the local storage
-    checkUserSession = async () => {
-        Reactotron.log('Check user session');
-        const userToken = await AsyncStorage.getItem('userToken');
-        this.props.navigation.navigate(userToken ? 'App' : 'Auth');
+     checkSession = () => {
+         Reactotron.log('check session method called');
+        checkUserSession(
+            sessionExists = ()=> {
+                this.props.navigation.navigate('App');
+            },
+            sessionNotExist = ()=> {
+                this.props.navigation.navigate('Auth');
+            }
+        );
     };
-
 }
 
