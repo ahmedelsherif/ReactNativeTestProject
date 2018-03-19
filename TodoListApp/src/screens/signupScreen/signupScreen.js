@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import styles from "./signupStyle"
 import {Platform, Text, TextInput, Button, View, KeyboardAvoidingView} from 'react-native';
 import Reactotron from 'reactotron-react-native'
+import {createAccount} from "./signupManager"
 
 
 type Props = {};
@@ -63,6 +64,18 @@ export default class signupScreen extends Component<Props> {
 
     submitButtonTouched(){
         Reactotron.log('submit button touched, name: '+this.state.name+' email: '+this.state.email+'  password: '+this.state.password);
+        createAccount(
+            this.state.name,
+            this.state.email,
+            this.state.password,
+            () => {
+                Reactotron.log("signup succeeded");
+                this.props.navigation.navigate('App');
+            },
+            () => {
+                Reactotron.log("signup failed");
+            }
+        );
     }
 }
 
